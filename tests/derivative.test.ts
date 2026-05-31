@@ -54,3 +54,15 @@ test("handleDerivativeRegistered links child to parent and updates counts", () =
   assert.fieldEquals("IPAsset", child, "parentCount", "1");
   assert.fieldEquals("IPAsset", parent, "derivativeCount", "1");
 });
+
+test("handleDerivativeRegistered handles multiple parents", () => {
+  let child = "0x0000000000000000000000000000000000000003";
+  let p1 = "0x0000000000000000000000000000000000000004";
+  let p2 = "0x0000000000000000000000000000000000000005";
+  let template = "0x00000000000000000000000000000000000000bb";
+  handleDerivativeRegistered(newDerivativeRegistered(child, [p1, p2], [7, 8], template));
+  assert.entityCount("DerivativeLink", 2);
+  assert.fieldEquals("IPAsset", child, "parentCount", "2");
+  assert.fieldEquals("IPAsset", p1, "derivativeCount", "1");
+  assert.fieldEquals("IPAsset", p2, "derivativeCount", "1");
+});

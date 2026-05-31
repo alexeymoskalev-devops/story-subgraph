@@ -8,7 +8,8 @@
     "codegen": "npm run prepare:aeneid && graph codegen",
     "build": "npm run prepare:aeneid && graph build",
     "test": "graph test",
-    "deploy:goldsky": "goldsky subgraph deploy story-subgraph/0.0.1 --path ."
+    "deploy:goldsky": "goldsky subgraph deploy story-subgraph/0.0.1 --path .",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.80.0",
@@ -16,6 +17,7 @@
   },
   "devDependencies": {
     "matchstick-as": "0.6.0",
-    "mustache": "^4.2.0"
+    "mustache": "^4.2.0",
+    "patch-package": "^8.0.0"
   }
 }
