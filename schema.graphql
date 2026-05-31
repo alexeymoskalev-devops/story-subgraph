@@ -1,0 +1,57 @@
+type IPAsset @entity {
+  id: ID! # ipId (address)
+  nftContract: Bytes
+  tokenId: BigInt
+  uri: String
+  registrationDate: BigInt
+  parentCount: Int!
+  derivativeCount: Int!
+  royaltyPaidTotal: BigInt!
+  attachedTerms: [LicenseAttachment!]! @derivedFrom(field: "ip")
+  parents: [DerivativeLink!]! @derivedFrom(field: "child")
+  derivatives: [DerivativeLink!]! @derivedFrom(field: "parent")
+}
+
+type LicenseTerms @entity(immutable: true) {
+  id: ID! # licenseTermsId
+  licenseTemplate: Bytes!
+  rawTerms: Bytes!
+  registeredAtBlock: BigInt!
+}
+
+type LicenseAttachment @entity {
+  id: ID! # ipId-termsId
+  ip: IPAsset!
+  licenseTermsId: BigInt!
+  licenseTemplate: Bytes!
+  blockNumber: BigInt!
+}
+
+type DerivativeLink @entity {
+  id: ID! # childIpId-parentIpId
+  child: IPAsset!
+  parent: IPAsset!
+  licenseTermsIds: [BigInt!]!
+  licenseTemplate: Bytes!
+  blockNumber: BigInt!
+  txHash: Bytes!
+}
+
+type RoyaltyPayment @entity(immutable: true) {
+  id: ID! # txHash-logIndex
+  receiverIp: IPAsset!
+  payerIp: Bytes!
+  sender: Bytes!
+  token: Bytes!
+  amount: BigInt!
+  amountAfterFee: BigInt!
+  timestamp: BigInt!
+}
+
+type RevenueClaim @entity(immutable: true) {
+  id: ID! # txHash-logIndex
+  claimer: Bytes!
+  token: Bytes!
+  amount: BigInt!
+  timestamp: BigInt!
+}

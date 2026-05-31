@@ -1,0 +1,15 @@
+[
+  {"type":"event","name":"RoyaltyPaid","inputs":[
+    {"name":"receiverIpId","type":"address","indexed":false},
+    {"name":"payerIpId","type":"address","indexed":false},
+    {"name":"sender","type":"address","indexed":false},
+    {"name":"token","type":"address","indexed":false},
+    {"name":"amount","type":"uint256","indexed":false},
+    {"name":"amountAfterFee","type":"uint256","indexed":false}
+  ],"anonymous":false},
+  {"type":"event","name":"RevenueTokenClaimed","inputs":[
+    {"name":"claimer","type":"address","indexed":false},
+    {"name":"token","type":"address","indexed":false},
+    {"name":"amount","type":"uint256","indexed":false}
+  ],"anonymous":false}
+]

@@ -1,0 +1,11 @@
+[
+  {"type":"event","name":"IPRegistered","inputs":[
+    {"name":"ipId","type":"address","indexed":false},
+    {"name":"chainId","type":"uint256","indexed":true},
+    {"name":"tokenContract","type":"address","indexed":true},
+    {"name":"tokenId","type":"uint256","indexed":true},
+    {"name":"name","type":"string","indexed":false},
+    {"name":"uri","type":"string","indexed":false},
+    {"name":"registrationDate","type":"uint256","indexed":false}
+  ],"anonymous":false}
+]

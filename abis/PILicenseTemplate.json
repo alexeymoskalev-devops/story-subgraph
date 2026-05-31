@@ -1,0 +1,7 @@
+[
+  {"type":"event","name":"LicenseTermsRegistered","inputs":[
+    {"name":"licenseTermsId","type":"uint256","indexed":true},
+    {"name":"licenseTemplate","type":"address","indexed":true},
+    {"name":"licenseTerms","type":"bytes","indexed":false}
+  ],"anonymous":false}
+]

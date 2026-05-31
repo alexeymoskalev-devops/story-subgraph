@@ -1,0 +1,21 @@
+{
+  "name": "story-subgraph",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "prepare:aeneid": "mustache config/aeneid.json subgraph.template.yaml > subgraph.yaml",
+    "prepare:mainnet": "mustache config/mainnet.json subgraph.template.yaml > subgraph.yaml",
+    "codegen": "npm run prepare:aeneid && graph codegen",
+    "build": "npm run prepare:aeneid && graph build",
+    "test": "graph test",
+    "deploy:goldsky": "goldsky subgraph deploy story-subgraph/0.0.1 --path ."
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.80.0",
+    "@graphprotocol/graph-ts": "0.35.1"
+  },
+  "devDependencies": {
+    "matchstick-as": "0.6.0",
+    "mustache": "^4.2.0"
+  }
+}

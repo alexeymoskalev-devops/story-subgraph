@@ -1,0 +1,84 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: IPAssetRegistry
+    network: {{network}}
+    source:
+      address: "{{ipAssetRegistry.address}}"
+      abi: IPAssetRegistry
+      startBlock: {{ipAssetRegistry.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities: [IPAsset]
+      abis:
+        - name: IPAssetRegistry
+          file: ./abis/IPAssetRegistry.json
+      eventHandlers:
+        - event: IPRegistered(address,indexed uint256,indexed address,indexed uint256,string,string,uint256)
+          handler: handleIPRegistered
+      file: ./src/ipAsset.ts
+  - kind: ethereum
+    name: LicensingModule
+    network: {{network}}
+    source:
+      address: "{{licensingModule.address}}"
+      abi: LicensingModule
+      startBlock: {{licensingModule.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities: [IPAsset, DerivativeLink, LicenseAttachment]
+      abis:
+        - name: LicensingModule
+          file: ./abis/LicensingModule.json
+      eventHandlers:
+        - event: DerivativeRegistered(indexed address,indexed address,uint256[],address[],uint256[],address)
+          handler: handleDerivativeRegistered
+        - event: LicenseTermsAttached(indexed address,indexed address,address,uint256)
+          handler: handleLicenseTermsAttached
+      file: ./src/licensing.ts
+  - kind: ethereum
+    name: PILicenseTemplate
+    network: {{network}}
+    source:
+      address: "{{piLicenseTemplate.address}}"
+      abi: PILicenseTemplate
+      startBlock: {{piLicenseTemplate.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities: [LicenseTerms]
+      abis:
+        - name: PILicenseTemplate
+          file: ./abis/PILicenseTemplate.json
+      eventHandlers:
+        - event: LicenseTermsRegistered(indexed uint256,indexed address,bytes)
+          handler: handleLicenseTermsRegistered
+      file: ./src/licensing.ts
+  - kind: ethereum
+    name: RoyaltyModule
+    network: {{network}}
+    source:
+      address: "{{royaltyModule.address}}"
+      abi: RoyaltyModule
+      startBlock: {{royaltyModule.startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities: [RoyaltyPayment, RevenueClaim, IPAsset]
+      abis:
+        - name: RoyaltyModule
+          file: ./abis/RoyaltyModule.json
+      eventHandlers:
+        - event: RoyaltyPaid(address,address,address,address,uint256,uint256)
+          handler: handleRoyaltyPaid
+        - event: RevenueTokenClaimed(address,address,uint256)
+          handler: handleRevenueTokenClaimed
+      file: ./src/royalty.ts
