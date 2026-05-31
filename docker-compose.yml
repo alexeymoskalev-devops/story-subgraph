@@ -23,4 +23,5 @@ services:
       POSTGRES_USER: graph-node
       POSTGRES_PASSWORD: let-me-in
       POSTGRES_DB: graph-node
+      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=C"
       PGDATA: /var/lib/postgresql/data

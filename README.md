@@ -82,7 +82,7 @@ An IP asset's lineage plus royalties:
 
 ```graphql
 {
-  ipAsset(id: "0x<ipId>") {
+  ipasset(id: "0x<ipId>") {
     parentCount
     derivativeCount
     royaltyPaidTotal
@@ -92,6 +92,19 @@ An IP asset's lineage plus royalties:
   }
 }
 ```
+
+> Note on casing: The Graph lowercases the leading `IP` of `IPAsset`, so the query fields are `ipasset` / `ipassets` (not `ipAsset`). Other entities use the usual camelCase (`derivativeLinks`, `royaltyPayments`, …).
+
+### Verified live on aeneid
+
+Indexed against `https://aeneid.storyrpc.io` with a local graph-node and queried a real on-chain derivative relationship created via the [`story-ip-graph-mcp`](../story-ip-graph-mcp) server:
+
+```
+ipasset(0x0b4df5a3…351d) → parentCount 1, parent 0x9a90f1c5…1f65 (licenseTermsIds ["1894"])
+ipasset(0x9a90f1c5…1f65) → derivativeCount 3, attachedTerms [1894]
+```
+
+— `DerivativeLink` (the IP graph), aggregate counts, and license attachment all matched on-chain reality.
 
 ---
 
