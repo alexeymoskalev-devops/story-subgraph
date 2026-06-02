@@ -134,3 +134,17 @@ The manifest is generated from `subgraph.template.yaml` and a per-network config
 ## Relationship to story-ip-graph-mcp
 
 This subgraph **complements** [story-ip-graph-mcp](https://github.com/alexeymoskalev-devops/story-ip-graph-mcp): the MCP server reads the graph on-chain point-by-point (one IP at a time, live), while this subgraph serves it in aggregate with history — making lineage, royalty totals, and reverse relations queryable in a single GraphQL request.
+
+---
+
+## Part of a 4-repo Story Protocol contribution
+
+Built for the Story "AI × IP" direction, in two independent tracks:
+
+**Track A — agents**
+- [story-ip-graph-mcp](https://github.com/alexeymoskalev-devops/story-ip-graph-mcp) — MCP server: derivative/remix registration + IP-graph lineage reads
+- [story-ip-agent-demo](https://github.com/alexeymoskalev-devops/story-ip-agent-demo) — autonomous ElizaOS agent that drives the MCP server
+
+**Track B — data**
+- **story-subgraph** — open-source The Graph subgraph indexing live Story Protocol — *this repo*
+- [story-ip-explorer](https://github.com/alexeymoskalev-devops/story-ip-explorer) — Next.js dashboard + lineage explorer over the subgraph
