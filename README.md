@@ -97,7 +97,7 @@ An IP asset's lineage plus royalties:
 
 ### Verified live on aeneid
 
-Indexed against `https://aeneid.storyrpc.io` with a local graph-node and queried a real on-chain derivative relationship created via the [`story-ip-graph-mcp`](../story-ip-graph-mcp) server:
+Indexed against `https://aeneid.storyrpc.io` with a local graph-node and queried a real on-chain derivative relationship created via the [`story-ip-graph-mcp`](https://github.com/alexeymoskalev-devops/story-ip-graph-mcp) server:
 
 ```
 ipasset(0x0b4df5a3…351d) → parentCount 1, parent 0x9a90f1c5…1f65 (licenseTermsIds ["1894"])
@@ -133,4 +133,4 @@ The manifest is generated from `subgraph.template.yaml` and a per-network config
 
 ## Relationship to story-ip-graph-mcp
 
-This subgraph **complements** [story-ip-graph-mcp](https://github.com/): the MCP server reads the graph on-chain point-by-point (one IP at a time, live), while this subgraph serves it in aggregate with history — making lineage, royalty totals, and reverse relations queryable in a single GraphQL request.
+This subgraph **complements** [story-ip-graph-mcp](https://github.com/alexeymoskalev-devops/story-ip-graph-mcp): the MCP server reads the graph on-chain point-by-point (one IP at a time, live), while this subgraph serves it in aggregate with history — making lineage, royalty totals, and reverse relations queryable in a single GraphQL request.
